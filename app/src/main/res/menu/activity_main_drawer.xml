@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_inicio" android:icon="@android:drawable/ic_dialog_dialer"
+            android:title="Início" />
+        <item android:id="@+id/nav_mapa" android:icon="@android:drawable/ic_dialog_map"
+            android:title="Mapa" />
+        <item android:id="@+id/nav_msgs" android:icon="@android:drawable/ic_dialog_email"
+            android:title="Mensagens" />
+        <item android:id="@+id/nav_busca" android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="Buscar locais" />
+    </group>
+
+    <item android:title="Ajustes">
+        <menu>
+            <item android:id="@+id/nav_editperfil" android:icon="@android:drawable/ic_menu_agenda"
+                android:title="Editar perfil" />
+            <item android:id="@+id/nav_config" android:icon="@android:drawable/ic_menu_manage"
+                android:title="Configurações" />
+            <item android:id="@+id/nav_sobre" android:icon="@android:drawable/ic_dialog_info"
+                android:title="Sobre o app" />
+            <item android:id="@+id/nav_encsessao" android:icon="@android:drawable/ic_menu_close_clear_cancel"
+                android:title="Encerrar sessão" />
+        </menu>
+    </item>
+
+</menu>

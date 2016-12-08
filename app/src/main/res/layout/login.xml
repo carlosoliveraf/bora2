@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:src="@mipmap/beer"
+        android:scaleType = "centerCrop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:text="Bora!?"
+        android:layout_width="match_parent"
+        android:layout_height="125px"
+        android:layout_marginTop="34dp"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        tools:text="Bora!?"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="56sp"
+        android:textColor="#000000"
+        android:textAllCaps="true"
+        android:textAlignment="center"
+        android:selectAllOnFocus="false"
+        android:fontFamily="casual" />
+
+    <Button
+        android:text="Cadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="34dp"
+        android:id="@+id/register"
+        android:enabled="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:textSize="18sp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp" />
+
+    <TextView
+        android:text="Não possui cadastro?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        tools:text="Não possui cadastro?"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:textAllCaps="true"
+        android:textAlignment="center"
+        android:selectAllOnFocus="false"
+        android:fontFamily="casual"
+        android:layout_above="@+id/register"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:textColorLink="@android:color/transparent"
+        tools:textStyle="bold" />
+
+    <Button
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Acessar"
+        android:id="@+id/maps"
+        android:singleLine="true"
+        android:enabled="true"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:layout_marginBottom="23dp"
+        android:layout_above="@+id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+
+        />
+
+    <TextView
+        android:text="Já cadastrado?"
+        android:layout_width="match_parent"
+        android:id="@+id/textView3"
+        tools:text="Já cadastrado?"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:textAllCaps="true"
+        android:textAlignment="viewStart"
+        android:selectAllOnFocus="false"
+        android:fontFamily="casual"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_above="@+id/pwd"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="49dp"
+        android:paddingBottom="20dp"
+        android:elevation="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/pwd"
+        android:hint="Senha"
+        android:textStyle="normal|bold"
+        android:fontFamily="casual"
+        android:textSize="24sp"
+        android:textColorHint="?attr/editTextColor"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_above="@+id/maps"
+        android:layout_marginBottom="18dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/login"
+        android:hint="Nome de Usuário"
+        android:singleLine="true"
+        android:selectAllOnFocus="true"
+        android:textStyle="normal|bold"
+        android:textSize="24sp"
+        android:textColorLink="@android:color/transparent"
+        android:fontFamily="casual"
+        android:textColorHint="?attr/editTextColor"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
+        android:textAlignment="center"
+        android:cursorVisible="false"
+        android:layout_alignBottom="@+id/pwd"
+        android:layout_marginBottom="43dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="35dp"
+        android:layout_alignEnd="@+id/pwd"
+        android:layout_alignRight="@+id/pwd" />
+
+
+
+</RelativeLayout>
