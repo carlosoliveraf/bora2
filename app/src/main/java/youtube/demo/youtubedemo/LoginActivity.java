@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -31,9 +32,16 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import youtube.demo.youtubedemo.util.JsonUtil;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -65,14 +73,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+    //json util
+    private JsonUtil json;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        // this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
-        //Remove title bar
 
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 //Remove notification bar
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -158,9 +170,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
 
         // Reset errors.
         mEmailView.setError(null);
@@ -185,10 +194,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
         }
 
         if (cancel) {
@@ -198,22 +203,47 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            json = new JsonUtil();
+            String urlLogin = "https://guarded-tundra-50303.herokuapp.com/login";
+            List param = new ArrayList();
+            param.add(new BasicNameValuePair("username", email));
+            //param.add(new BasicNameValuePair("password", mPassword));
+            JSONObject retornoPost = json.getJSONFromUrl(urlLogin, param);
+            if(retornoPost == null){
+                Toast.makeText(this, "usuario inexistente", Toast.LENGTH_LONG).show();
+
+            }else {
+
+                try {
+                    if (retornoPost.getString("password").equals(mPasswordView.getText().toString())) {
+                        //System.out.print("loguei");
+                        //return true;
+                        Toast.makeText(this, "loguei", Toast.LENGTH_LONG).show();
+                        Intent nav = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(nav);
+                    } else {
+                        //return false;
+                        Toast.makeText(this, "senha incorreta", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        Intent nav = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(nav);
+        //Intent nav = new Intent(getApplicationContext(), MainActivity.class);
+        //startActivity(nav);
     }
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        //return email.contains("@");
+        return true;
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        //return password.length() > 4;
+        return true;
     }
 
     /**
@@ -324,6 +354,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
+
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
@@ -331,16 +362,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
+
+
 
             // TODO: register the new account here.
-            return true;
+            return false;
         }
 
         @Override

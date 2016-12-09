@@ -1,6 +1,7 @@
 package youtube.demo.youtubedemo;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
+        fm.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
 
         sMapFragment.getMapAsync(this);
     }
@@ -129,7 +130,8 @@ public class MainActivity extends AppCompatActivity
         }  else if (id == R.id.nav_sobre) {
 
         } else if (id == R.id.nav_encsessao) {
-
+            Intent nav = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(nav);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
