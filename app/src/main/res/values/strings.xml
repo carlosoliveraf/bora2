@@ -19,4 +19,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="error_permission_map">Erro de permissão</string>
+    <string name="ok_permission_map">Permissão OK</string>
 </resources>

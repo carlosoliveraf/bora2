@@ -204,7 +204,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             json = new JsonUtil();
-            String urlLogin = "https://guarded-tundra-50303.herokuapp.com/login";
+            String urlLogin = "https://boraws.herokuapp.com/login";
             List param = new ArrayList();
             param.add(new BasicNameValuePair("username", email));
             //param.add(new BasicNameValuePair("password", mPassword));
