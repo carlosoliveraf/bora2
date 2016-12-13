@@ -33,15 +33,25 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import youtube.demo.youtubedemo.Fragments.HomeFragment;
 import youtube.demo.youtubedemo.Fragments.ImportFragment;
 import youtube.demo.youtubedemo.Fragments.MainFragment;
-//import youtube.demo.youtubedemo.Fragments.MensagensFragment;
+import youtube.demo.youtubedemo.util.JsonUtil;
+
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, LocationListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, LocationListener, GoogleMap.OnMarkerClickListener {
 
     SupportMapFragment sMapFragment;
     protected LocationManager locationManager;
@@ -54,6 +64,8 @@ public class MainActivity extends AppCompatActivity
     String provider;
     protected String latitude, longitude;
     protected boolean gps_enabled, network_enabled;
+    //json util
+    private JsonUtil json;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,6 +234,7 @@ public class MainActivity extends AppCompatActivity
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(
                 this, R.raw.style_json);
         map.setMapStyle(style);
+        map.setOnMarkerClickListener(this);
         //map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
               //          public void onMapLongClick(LatLng latLng) {
              //   map.addMarker(new MarkerOptions().position(latLng));
@@ -232,13 +245,52 @@ public class MainActivity extends AppCompatActivity
 
         map.getUiSettings().setMyLocationButtonEnabled(true);
         //map.addMarker(new MarkerOptions().position(latlong).title("Where am I."));
-        map.addMarker(new MarkerOptions()
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.common_google_signin_btn_icon_light_focused))
+        json = new JsonUtil();
+        String urlPlaces = "https://boraws.herokuapp.com/places";
+        JSONArray retornoGet = json.getJSONFromUrlGetArray(urlPlaces);
+        System.out.println(retornoGet.toString());
+        if(retornoGet != null){
+            JSONObject jsonObj = null;
+            for(int i= 0; i<retornoGet.length(); i++){
+
+                try {
+                    jsonObj = retornoGet.getJSONObject(i);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    Marker marker = map.addMarker(new MarkerOptions()
+                                .title(jsonObj.getString("name"))
+                                .anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
+                                .position(new LatLng(jsonObj.getDouble("lat"), jsonObj.getDouble("long"))));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+
+        }
+
+
+        Marker myMarker = map.addMarker(new MarkerOptions()
+               // .icon(BitmapDescriptorFactory.fromResource(R.drawable.common_google_signin_btn_text_light))
+                .title("teste!")
                 .anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
                 .position(new LatLng(currentLat, currentLong)));
         CameraUpdate cameraPosition = CameraUpdateFactory.newLatLngZoom(latlong, 17);
         map.moveCamera(cameraPosition);
         map.animateCamera(cameraPosition);
         mapa = map;
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+
+        Toast.makeText(this,marker.getTitle(),Toast.LENGTH_LONG).show();
+
+        return false;
     }
 }

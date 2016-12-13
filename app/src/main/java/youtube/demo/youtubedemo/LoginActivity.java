@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
@@ -54,6 +55,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+    public static final String PREFS_NAME="LocalePrefs";
+    private SharedPreferences settings;
+    private String loginTemp;
+    View focusView = null;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -76,10 +81,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     //json util
     private JsonUtil json;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        // this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+
+        settings = getSharedPreferences(PREFS_NAME, 0);
+        loginTemp = settings.getString("username", "");
+
+
+
 
 
 
@@ -91,6 +103,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //set content view AFTER ABOVE sequence (to avoid crash)
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
+
+        EditText loginField = (EditText) findViewById(R.id.email);
+        loginField.setText(loginTemp);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         //populateAutoComplete();
@@ -114,7 +129,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 attemptLogin();
             }
         });
-
+        focusView = mEmailView;
+        focusView.requestFocus();
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
@@ -169,18 +185,38 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+
+
+    public void onBackPressed() {
+        //na tela de login o botão voltar não deve realizar nenhuma ação!
+    }
+
+
     private void attemptLogin() {
 
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
-
+        String email;
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        if(loginTemp.length() > 0 && (mEmailView.getText().toString()).equalsIgnoreCase(loginTemp)){
+            email = loginTemp;
+        }else{
+            email = mEmailView.getText().toString();
+            SharedPreferences.Editor edit = settings.edit();
+            edit.clear();
+            edit.putString("username", email);
+            edit.commit();
+        }
+
         String password = mPasswordView.getText().toString();
 
+
+        //edit.putString("username", email);
+
+
         boolean cancel = false;
-        View focusView = null;
+        focusView = null;
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
