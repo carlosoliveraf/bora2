@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
        // this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
-        settings = getSharedPreferences(PREFS_NAME, 0);
+        settings = getSharedPreferences(PREFS_NAME, 1);
         loginTemp = settings.getString("username", "");
 
 

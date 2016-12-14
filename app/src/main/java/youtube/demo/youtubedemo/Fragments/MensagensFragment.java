@@ -1,110 +1,92 @@
-//package youtube.demo.youtubedemo.Fragments;
-//
-//import android.app.Activity;
-//import android.app.Fragment;
-//import android.app.ListFragment;
-//import android.app.LoaderManager;
-//import android.content.CursorLoader;
-//import android.database.Cursor;
-//import android.os.Bundle;
-//import android.support.annotation.Nullable;
-//import android.support.v4.content.Loader;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.AdapterView;
-//import android.widget.ArrayAdapter;
-//import android.widget.ListView;
-//import android.widget.Toast;
-//
-//import youtube.demo.youtubedemo.R;
-//import youtube.demo.youtubedemo.interf.OnFragmentInteractionListener;
-//import youtube.demo.youtubedemo.util.DataAdapter;
-//
-//public class MensagensFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>{
-//        private OnFragmentInteractionListener mListener;
-//        private DataAdapter adapter;
-//
-//        /**
-//         * Mandatory empty constructor for the fragment manager to instantiate the
-//         * fragment (e.g. upon screen orientation changes).
-//         */
-//        //public ItemListFragment() {
-//        //}
-//
-//        @Override
-//        public void onCreate(Bundle savedInstanceState) {
-//            super.onCreate(savedInstanceState);
-//
-//            adapter = new DataAdapter(getActivity(), R.layout.fragment_mensagens);
-//            setListAdapter(adapter);
-//
-//            getLoaderManager().initLoader(0, null, this);
-//        }
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//
-//        return inflater.inflate(R.layout.fragment_mensagens,container,false);
-//    }
-//
-//        @Override
-//        public void onAttach(Activity activity) {
-//            super.onAttach(activity);
-//            try {
-//                mListener = (OnFragmentInteractionListener) activity;
-//            } catch (ClassCastException e) {
-//                throw new ClassCastException(activity.toString()
-//                        + " must implement OnFragmentInteractionListener");
-//            }
-//        }
-//
-//        @Override
-//        public void onDetach() {
-//            super.onDetach();
-//            mListener = null;
-//        }
-//
-//        @Override
-//        public void onListItemClick(ListView l, View v, int position, long id) {
-//            super.onListItemClick(l, v, position, id);
-//
-//            if (null != mListener) {
-//                // Notify the active callbacks interface (the activity, if the
-//                // fragment is attached to one) that an item has been selected.
-//                mListener.onItemSelected(id);
-//            }
-//        }
-//
-//        @Override
-//        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-//            CursorLoader loader = new CursorLoader(getActivity(),
-//                    DataProvider.CONTENT_URI_DATA,
-//                    new String[]{DataProvider.COL_ID, DataProvider.COL_CONTENT},
-//                    null,
-//                    null,
-//                    null);
-//            return loader;
-//        }
-//
-//        @Override
-//        public void onLoadFinished(android.content.Loader<Cursor> loader, Cursor data) {
-//
-//        }
-//
-//        @Override
-//        public void onLoaderReset(android.content.Loader<Cursor> loader) {
-//
-//        }
-//
-//        @Override
-//        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-//            adapter.swapCursor(data);
-//        }
-//
-//        @Override
-//        public void onLoaderReset(Loader<Cursor> loader) {
-//            adapter.swapCursor(null);
-//        }
-//} {
-//}
+package youtube.demo.youtubedemo.Fragments;
+
+import android.app.ListFragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.SimpleAdapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import youtube.demo.youtubedemo.R;
+
+public class MensagensFragment extends ListFragment{
+    // Array of strings storing country names
+    String[] countries = new String[] {
+            "Carlos Olivera",
+            "Joe Joe Oliveira",
+            "Ivan Amorim",
+            "Guilherme Nascimento",
+            "Alisson Vargas",
+            "Fernando Rodrigues",
+            "Matheus Caiser",
+            "João da Silva",
+            "Chuck Norris",
+            "Roberto Gabriel"
+
+    };
+
+    // Array of integers points to images stored in /res/drawable/
+    int[] flags = new int[]{
+            R.mipmap.avatar_sm,
+            R.mipmap.avatar_sm,
+            R.mipmap.avatar_sm,
+            R.mipmap.avatar_sm,
+            R.mipmap.avatar_sm,
+            R.mipmap.avatar_sm,
+            R.mipmap.avatar_sm,
+            R.mipmap.avatar_sm,
+            R.mipmap.avatar_sm,
+            R.mipmap.avatar_sm
+    };
+
+    // Array of strings to store currencies
+    String[] currency = new String[]{
+            "E aí... de boa?",
+            "Flww",
+            "Claroo!",
+            "192234",
+            "Mensagem teste 123",
+            "hahahah",
+            "hello world",
+            "café",
+            "kkkkkkkkkkk",
+            "hola que tal"
+    };
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+
+        // Each row in the list stores country name, currency and flag
+        List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
+
+        for(int i=0;i<10;i++){
+            HashMap<String, String> hm = new HashMap<String,String>();
+            //hm.put("txt", "Country : " + countries[i]);
+            //hm.put("cur","Currency : " + currency[i]);
+            //hm.put("flag", Integer.toString(flags[i]) );
+            hm.put("txt", countries[i]);
+            hm.put("cur",currency[i]);
+            hm.put("flag", Integer.toString(flags[i]) );
+            aList.add(hm);
+        }
+
+        // Keys used in Hashmap
+        String[] from = { "flag","txt","cur" };
+
+        // Ids of views in listview_layout
+        int[] to = { R.id.flag,R.id.txt,R.id.cur};
+
+        // Instantiating an adapter to store each items
+        // R.layout.listview_layout defines the layout of each item
+        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.fragment_mensagens, from, to);
+
+        setListAdapter(adapter);
+
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+}

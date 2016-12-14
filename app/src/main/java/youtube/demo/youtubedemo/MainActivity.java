@@ -10,10 +10,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,32 +20,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
-import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import youtube.demo.youtubedemo.Fragments.HomeFragment;
 import youtube.demo.youtubedemo.Fragments.ImportFragment;
-import youtube.demo.youtubedemo.Fragments.MainFragment;
+import youtube.demo.youtubedemo.Fragments.LocaisFragment;
+import youtube.demo.youtubedemo.Fragments.MensagensFragment;
+import youtube.demo.youtubedemo.Fragments.SobreFragment;
 import youtube.demo.youtubedemo.util.JsonUtil;
 
 
@@ -137,8 +133,13 @@ public class MainActivity extends AppCompatActivity
         currentLat = location.getLatitude();
         currentLong = location.getLongitude();
         LatLng latlong = new LatLng(currentLat, currentLong);
-        CameraUpdate cameraPosition = CameraUpdateFactory.newLatLngZoom(latlong, 17);
-        mapa.moveCamera(cameraPosition);
+        try {
+            CameraUpdate cameraPosition = CameraUpdateFactory.newLatLngZoom(latlong, 17);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        //mapa.moveCamera(cameraPosition);
         //Toast.makeText(this, "moved!", Toast.LENGTH_LONG).show();
     }
 
@@ -202,7 +203,7 @@ public class MainActivity extends AppCompatActivity
                 sFm.beginTransaction().show(sMapFragment).commit();
 
         } else if (id == R.id.nav_msgs) {
-            //fm.beginTransaction().replace(R.id.content_frame, new MensagensFragment()).commit();
+            fm.beginTransaction().replace(R.id.content_frame, new MensagensFragment()).commit();
 
         } else if (id == R.id.nav_busca) {
             fm.beginTransaction().replace(R.id.content_frame, new ImportFragment()).commit();
@@ -212,7 +213,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_config) {
 
         }  else if (id == R.id.nav_sobre) {
-
+            fm.beginTransaction().replace(R.id.content_frame, new SobreFragment()).commit();
         } else if (id == R.id.nav_encsessao) {
             Intent nav = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(nav);
@@ -248,7 +249,8 @@ public class MainActivity extends AppCompatActivity
         json = new JsonUtil();
         String urlPlaces = "https://boraws.herokuapp.com/places";
         JSONArray retornoGet = json.getJSONFromUrlGetArray(urlPlaces);
-        System.out.println(retornoGet.toString());
+        //JSONArray retornoGet = null;
+
         if(retornoGet != null){
             JSONObject jsonObj = null;
             for(int i= 0; i<retornoGet.length(); i++){
@@ -288,9 +290,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-
         Toast.makeText(this,marker.getTitle(),Toast.LENGTH_LONG).show();
-
+        FragmentManager fm = getFragmentManager();
+       // fm.beginTransaction().;
+        android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
+        sFm.beginTransaction().hide(sMapFragment).commit();
+        fm.beginTransaction().replace(R.id.content_frame, new LocaisFragment()).commit();
         return false;
     }
 }
