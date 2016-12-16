@@ -1,20 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/iconebar"
+            android:id="@+id/imageView3" />
+
         <TextView
-            android:text="aaaaa"
+            android:text="Sanduicheria da Ilha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView5"
+            android:layout_marginTop="49dp"
+            android:textSize="30sp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="93dp"
-            android:textSize="30sp" />
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="Rua Altamiro Guimarães, 4234 - Centro - Florianópolis/SC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView15"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Atendimento:"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView16"
+                android:layout_marginTop="170dp"
+                android:textAlignment="textEnd"
+                android:layout_width="260dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:text="9,5"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView17"
+                android:layout_marginTop="170dp"
+                android:textStyle="normal|bold"
+                android:layout_width="170dp"
+                android:textAlignment="textEnd"
+                android:textColor="@color/Red" />
+        </LinearLayout>
+
     </RelativeLayout>
 
 </FrameLayout>

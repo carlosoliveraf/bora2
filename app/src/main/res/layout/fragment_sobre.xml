@@ -1,10 +1,17 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="youtube.demo.youtubedemo.Fragments.SobreFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/sobre"
+        android:id="@+id/imageView2" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -18,10 +25,10 @@
             android:textSize="30sp"
             android:textAlignment="center"
             android:textStyle="normal|bold"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="15dp" />
 
         <TextView
-            android:text="SENAI"
+            android:text="ANÁLISE E DESENVOLVIMENTO DE SISTEMAS  SENAI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView10"
@@ -34,7 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView8"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:layout_marginTop="340dp" />
 
         <TextView
             android:text="Equipe: Carlos Olivera, Douglas Claumann, Hugo Pozzebon."
@@ -42,6 +50,16 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView9"
             android:textAlignment="center" />
+
+        <TextView
+            android:text="boraapp@bora.com.br"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textStyle="normal|bold" />
 
     </LinearLayout>
 

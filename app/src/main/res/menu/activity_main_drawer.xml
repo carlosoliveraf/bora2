@@ -10,19 +10,18 @@
             android:title="Mensagens" />
         <item android:id="@+id/nav_busca" android:icon="@android:drawable/ic_menu_myplaces"
             android:title="Buscar locais" />
+        <item android:id="@+id/nav_editperfil" android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Editar perfil" />
+        <item android:id="@+id/nav_config" android:icon="@android:drawable/ic_menu_manage"
+            android:title="Configurações" />
+        <item android:id="@+id/nav_sobre" android:icon="@android:drawable/ic_dialog_info"
+            android:title="Sobre o app" />
+        <item android:id="@+id/nav_encsessao" android:icon="@android:drawable/ic_menu_close_clear_cancel"
+            android:title="Encerrar sessão" />
     </group>
 
-    <item android:title="Ajustes">
-        <menu>
-            <item android:id="@+id/nav_editperfil" android:icon="@android:drawable/ic_menu_agenda"
-                android:title="Editar perfil" />
-            <item android:id="@+id/nav_config" android:icon="@android:drawable/ic_menu_manage"
-                android:title="Configurações" />
-            <item android:id="@+id/nav_sobre" android:icon="@android:drawable/ic_dialog_info"
-                android:title="Sobre o app" />
-            <item android:id="@+id/nav_encsessao" android:icon="@android:drawable/ic_menu_close_clear_cancel"
-                android:title="Encerrar sessão" />
-        </menu>
-    </item>
+
+
+
 
 </menu>

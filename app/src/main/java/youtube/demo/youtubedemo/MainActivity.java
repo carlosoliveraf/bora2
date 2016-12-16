@@ -122,7 +122,13 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            FragmentManager fm = getFragmentManager();
+            android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
+            sFm.beginTransaction().hide(sMapFragment).commit();
+            fm.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+
+            //super.onBackPressed();
+
         }
     }
 
@@ -157,6 +163,7 @@ public class MainActivity extends AppCompatActivity
     public void onProviderDisabled(String provider) {
 
     }
+
 
 
     @Override
@@ -213,12 +220,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_config) {
 
         }  else if (id == R.id.nav_sobre) {
+            item.setChecked(true);
             fm.beginTransaction().replace(R.id.content_frame, new SobreFragment()).commit();
         } else if (id == R.id.nav_encsessao) {
             Intent nav = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(nav);
         }
-
+        item.setChecked(true);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

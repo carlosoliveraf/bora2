@@ -20,8 +20,7 @@ public class LocaisFragment extends android.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
-        View view =  inflater.inflate(R.layout.fragment_sobre,container,false);
+        View view =  inflater.inflate(R.layout.fragment_locais,container,false);
         //TextView loginField = (TextView) view.findViewById(R.id.locais);
         //loginField.setText("local");
         return view;
