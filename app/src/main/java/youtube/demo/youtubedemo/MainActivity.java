@@ -1,7 +1,10 @@
 package youtube.demo.youtubedemo;
 
+import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
@@ -13,6 +16,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -43,6 +47,7 @@ import youtube.demo.youtubedemo.Fragments.ImportFragment;
 import youtube.demo.youtubedemo.Fragments.LocaisFragment;
 import youtube.demo.youtubedemo.Fragments.MensagensFragment;
 import youtube.demo.youtubedemo.Fragments.SobreFragment;
+import youtube.demo.youtubedemo.entity.LocalEntity;
 import youtube.demo.youtubedemo.util.JsonUtil;
 
 
@@ -272,8 +277,10 @@ public class MainActivity extends AppCompatActivity
                 try {
                     Marker marker = map.addMarker(new MarkerOptions()
                                 .title(jsonObj.getString("name"))
+                                .snippet(jsonObj.getString("endereco"))
                                 .anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
                                 .position(new LatLng(jsonObj.getDouble("lat"), jsonObj.getDouble("long"))));
+                    //marker.showInfoWindow();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -298,12 +305,45 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Toast.makeText(this,marker.getTitle(),Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,marker.getTitle(),Toast.LENGTH_LONG).show();
+        LocalEntity local = new LocalEntity(marker.getTitle());
+        marker.showInfoWindow();
+
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("your title");
+        dialog.setMessage("youmessage");
+        dialog.setNegativeButton("Cancel", null);
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+        dialog.show();
+
+
+
+        Snackbar snack = Snackbar.make(findViewById(R.id.drawer_layout), marker.getTitle(), Snackbar.LENGTH_INDEFINITE)
+                .setAction("HIDE", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(findViewById(R.id.drawer_layout), "xxx", Snackbar.LENGTH_SHORT).dismiss();
+            }
+        }).setAction("SHOW", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Snackbar.make(findViewById(R.id.drawer_layout), "abc", Snackbar.LENGTH_SHORT).show();
+                    }
+                });
+        //snack.show();
+
         FragmentManager fm = getFragmentManager();
-       // fm.beginTransaction().;
         android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
         sFm.beginTransaction().hide(sMapFragment).commit();
-        fm.beginTransaction().replace(R.id.content_frame, new LocaisFragment()).commit();
+        Fragment fragment = LocaisFragment.newInstance(local);
+        fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
         return false;
     }
 }
