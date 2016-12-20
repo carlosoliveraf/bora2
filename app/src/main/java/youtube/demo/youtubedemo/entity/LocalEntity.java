@@ -21,6 +21,17 @@ public class LocalEntity implements Serializable {
         this.name = name;
     }
 
+    public LocalEntity(String name, String email, String funcionamento, String url, String telefone, String endereco, Double lat, Double longit) {
+        this.name = name;
+        this.email = email;
+        this.funcionamento = funcionamento;
+        this.url = url;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.lat = lat;
+        this.longit = longit;
+    }
+
     public String getName() {
         return name;
     }

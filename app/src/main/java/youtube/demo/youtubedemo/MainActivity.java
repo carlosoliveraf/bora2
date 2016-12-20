@@ -42,6 +42,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 import youtube.demo.youtubedemo.Fragments.HomeFragment;
 import youtube.demo.youtubedemo.Fragments.ImportFragment;
 import youtube.demo.youtubedemo.Fragments.LocaisFragment;
@@ -52,21 +54,57 @@ import youtube.demo.youtubedemo.util.JsonUtil;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, LocationListener, GoogleMap.OnMarkerClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, LocationListener, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
     SupportMapFragment sMapFragment;
     protected LocationManager locationManager;
     protected LocationListener locationListener;
     protected double currentLat;
     protected double currentLong;
+    private HashMap<String, LocalEntity> markerMap;
     GoogleMap mapa;
     TextView txtLat;
     String lat;
     String provider;
+    private boolean movedOnce;
     protected String latitude, longitude;
     protected boolean gps_enabled, network_enabled;
     //json util
     private JsonUtil json;
+    private boolean pgBar = false;
+
+
+    class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        private final View myContentsView;
+
+        MyInfoWindowAdapter(){
+            myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+
+            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title));
+            tvTitle.setText(marker.getTitle());
+            TextView tvEndereco = ((TextView)myContentsView.findViewById(R.id.snippet));
+            tvEndereco.setText(marker.getSnippet());
+
+            //return null;
+
+            return myContentsView;
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            // TODO Auto-generated method stub
+
+            return null;
+        }
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +113,8 @@ public class MainActivity extends AppCompatActivity
         sMapFragment = SupportMapFragment.newInstance();
         boolean permissionGranted = ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
+        movedOnce = false;
+        markerMap = new HashMap<String, LocalEntity>();
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -85,8 +124,12 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, R.string.error_permission_map, Toast.LENGTH_LONG).show();}
         // }else {
         Location myLocation = locationManager.getLastKnownLocation(bbb);
-        currentLat = myLocation.getLatitude();
-        currentLong = myLocation.getLongitude();
+        try {
+            currentLat = myLocation.getLatitude();
+            currentLong = myLocation.getLongitude();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         if(permissionGranted) {
             // {Some Code}
             Toast.makeText(this, R.string.ok_permission_map, Toast.LENGTH_LONG).show();
@@ -129,11 +172,21 @@ public class MainActivity extends AppCompatActivity
         } else {
             FragmentManager fm = getFragmentManager();
             android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
-            sFm.beginTransaction().hide(sMapFragment).commit();
-            fm.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+            Fragment fragment = fm.findFragmentByTag("LOCAL_FRAG");
+            if(fragment != null && fragment.isVisible() && pgBar){
+                pgBar = false;
+                //Toast.makeText(this,"entrei no if",Toast.LENGTH_SHORT).show();
+                if (!sMapFragment.isAdded())
+                    sFm.beginTransaction().add(R.id.map, sMapFragment).commit();
+                else
+                    sFm.beginTransaction().show(sMapFragment).commit();
+            }else {
+                //Toast.makeText(this,"entrei no else",Toast.LENGTH_SHORT).show();
+                sFm.beginTransaction().hide(sMapFragment).commit();
+                fm.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
 
-            //super.onBackPressed();
-
+                //super.onBackPressed();
+            }
         }
     }
 
@@ -146,11 +199,17 @@ public class MainActivity extends AppCompatActivity
         LatLng latlong = new LatLng(currentLat, currentLong);
         try {
             CameraUpdate cameraPosition = CameraUpdateFactory.newLatLngZoom(latlong, 17);
+            if(!movedOnce){
+                mapa.moveCamera(cameraPosition);
+                movedOnce = true;
+            }
+
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        //mapa.moveCamera(cameraPosition);
+
+
         //Toast.makeText(this, "moved!", Toast.LENGTH_LONG).show();
     }
 
@@ -168,7 +227,6 @@ public class MainActivity extends AppCompatActivity
     public void onProviderDisabled(String provider) {
 
     }
-
 
 
     @Override
@@ -239,10 +297,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onMapReady(GoogleMap map) {
-        //String json = "{\"stylers\":[{\"hue\":\"#ff1a00\"},{\"invert_lightness\":true},{\"saturation\":-100},{\"lightness\":33},{\"gamma\":0.5}]},{\"featureType\":\"water\",\"elementType\":\"geometry\",\"stylers\":[{\"color\":\"#2D333C\"}]}";
+
         if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             map.setMyLocationEnabled(true);
         };
+        map.setInfoWindowAdapter(new MyInfoWindowAdapter());
+        map.setOnInfoWindowClickListener(this);
         map.setIndoorEnabled(false);
         map.setBuildingsEnabled(false);
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(
@@ -277,15 +337,15 @@ public class MainActivity extends AppCompatActivity
                 try {
                     Marker marker = map.addMarker(new MarkerOptions()
                                 .title(jsonObj.getString("name"))
-                                .snippet(jsonObj.getString("endereco"))
+                                .snippet(jsonObj.getString("endereco")+"\nFunc: "+jsonObj.getString("funcionamento")+"\nTel: "+jsonObj.getString("telefone"))
                                 .anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
                                 .position(new LatLng(jsonObj.getDouble("lat"), jsonObj.getDouble("long"))));
+                    markerMap.put(jsonObj.getString("name"), new LocalEntity(jsonObj.getString("name"), jsonObj.getString("email"), jsonObj.getString("funcionamento"), jsonObj.getString("url"), jsonObj.getString("telefone"), jsonObj.getString("endereco"), jsonObj.getDouble("lat"), jsonObj.getDouble("long")));
+
                     //marker.showInfoWindow();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
 
             }
 
@@ -304,24 +364,28 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onMarkerClick(Marker marker) {
+    public boolean onMarkerClick(final Marker marker) {
         //Toast.makeText(this,marker.getTitle(),Toast.LENGTH_LONG).show();
-        LocalEntity local = new LocalEntity(marker.getTitle());
-        marker.showInfoWindow();
+        final LocalEntity local = new LocalEntity(marker.getTitle());
+        //marker.showInfoWindow();
 
 
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("your title");
-        dialog.setMessage("youmessage");
-        dialog.setNegativeButton("Cancel", null);
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        //AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        //dialog.setTitle("your title");
+        //dialog.setMessage("youmessage");
+        //dialog.setNegativeButton("Cancel", null);
+        //dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-
-            }
-        });
-        dialog.show();
+          //  @Override
+          //  public void onClick(DialogInterface dialog, int id) {
+          //      FragmentManager fm = getFragmentManager();
+          //      android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
+          //      sFm.beginTransaction().hide(sMapFragment).commit();
+          //      Fragment fragment = LocaisFragment.newInstance(local);
+          //      fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
+         //   }
+        //});
+       // dialog.show();
 
 
 
@@ -339,11 +403,21 @@ public class MainActivity extends AppCompatActivity
                 });
         //snack.show();
 
+
+        return false;
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+
+        LocalEntity local = markerMap.get(marker.getTitle());
+        pgBar = true;
         FragmentManager fm = getFragmentManager();
         android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
         sFm.beginTransaction().hide(sMapFragment).commit();
         Fragment fragment = LocaisFragment.newInstance(local);
-        fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
-        return false;
+        fm.beginTransaction().replace(R.id.content_frame, fragment, "LOCAL_FRAG").commit();
     }
+
+
 }

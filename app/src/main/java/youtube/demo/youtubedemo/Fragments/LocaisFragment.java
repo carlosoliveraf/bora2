@@ -1,14 +1,10 @@
 package youtube.demo.youtubedemo.Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -40,8 +36,10 @@ public class LocaisFragment extends android.app.Fragment {
         mLocal = (LocalEntity) getArguments().getSerializable(
                 LOCAL_KEY);
 
-        TextView titleField = (TextView) view.findViewById(R.id.textView5);
+        TextView titleField = (TextView) view.findViewById(R.id.placetitle);
         titleField.setText(mLocal.getName());
+        TextView endField = (TextView) view.findViewById(R.id.placeadress);
+        endField.setText(mLocal.getEndereco());
         return view;
     }
 

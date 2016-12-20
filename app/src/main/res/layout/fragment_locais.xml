@@ -19,7 +19,7 @@
             android:text="Sanduicheria da Ilha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView5"
+            android:id="@+id/placetitle"
             android:layout_marginTop="49dp"
             android:textSize="30sp"
             android:layout_alignParentTop="true"
@@ -29,9 +29,9 @@
             android:text="Rua Altamiro Guimarães, 4234 - Centro - Florianópolis/SC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView15"
+            android:id="@+id/placeadress"
             android:layout_marginTop="23dp"
-            android:layout_below="@+id/textView5"
+            android:layout_below="@+id/placetitle"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textAlignment="center" />
@@ -44,7 +44,7 @@
             <TextView
                 android:text="Atendimento:"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView16"
+                android:id="@+id/atend"
                 android:layout_marginTop="170dp"
                 android:textAlignment="textEnd"
                 android:layout_width="260dp" />
@@ -53,21 +53,21 @@
                 android:text="Lotação:"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView11"
+                android:id="@+id/lotac"
                 android:textAlignment="textEnd" />
 
             <TextView
                 android:text="Produtos:"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView13"
+                android:id="@+id/produt"
                 android:textAlignment="textEnd" />
 
             <TextView
                 android:text="Preços:"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView12"
+                android:id="@+id/precos"
                 android:textAlignment="textEnd" />
 
         </LinearLayout>
@@ -83,7 +83,7 @@
             <TextView
                 android:text="9,5"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView17"
+                android:id="@+id/notaAtend"
                 android:layout_marginTop="170dp"
                 android:textStyle="normal|bold"
                 android:textAlignment="textEnd"
@@ -93,7 +93,7 @@
             <TextView
                 android:text="5,2"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView18"
+                android:id="@+id/notaLot"
                 android:textAlignment="textEnd"
                 android:textColor="@color/Red"
                 android:textStyle="normal|bold"
@@ -102,7 +102,7 @@
             <TextView
                 android:text="9,3"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView19"
+                android:id="@+id/notaProd"
                 android:textAlignment="textEnd"
                 android:textColor="@color/Red"
                 android:textStyle="normal|bold"
@@ -111,7 +111,7 @@
             <TextView
                 android:text="7,8"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView14"
+                android:id="@+id/notaPrec"
                 android:textAlignment="textEnd"
                 android:textColor="@color/Red"
                 android:textStyle="normal|bold"
@@ -133,18 +133,18 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView20" />
+                    android:id="@+id/spac1" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView21" />
+                    android:id="@+id/spac2" />
 
                 <TextView
                     android:text="Fernando Rod:"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:id="@+id/textView22"
+                    android:id="@+id/author1"
                     android:textAlignment="center"
                     android:textStyle="normal|bold" />
 
@@ -152,14 +152,14 @@
                     android:text="Joe Joe:"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:id="@+id/textView30"
+                    android:id="@+id/author2"
                     android:textAlignment="center"
                     android:textStyle="normal|bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView31" />
+                    android:id="@+id/spac3" />
             </LinearLayout>
 
             <LinearLayout
@@ -172,19 +172,19 @@
                     android:text="Últimas postagens:"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView24"
+                    android:id="@+id/ultPostTitle"
                     android:textAlignment="textStart"
                     android:textStyle="normal|bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView25" />
+                    android:id="@+id/spac4" />
 
                 <TextView
                     android:text="O bar está meio vazio, mas o atendimento é demorado. (15/12/2016 às 15h)"
                     android:layout_width="match_parent"
-                    android:id="@+id/textView26"
+                    android:id="@+id/post1"
                     android:layout_height="35dp"
                     android:paddingStart="5dp" />
 
@@ -192,7 +192,7 @@
                     android:text="Vontade de ir para casa... (12/12/2016 às 22h)"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:id="@+id/textView27"
+                    android:id="@+id/post2"
                     android:layout_weight="0.19"
                     android:paddingStart="5dp" />
 
