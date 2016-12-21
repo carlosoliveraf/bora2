@@ -39,9 +39,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import youtube.demo.youtubedemo.entity.UserEntity;
 import youtube.demo.youtubedemo.util.JsonUtil;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -56,6 +58,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
     public static final String PREFS_NAME="LocalePrefs";
+    public static UserEntity user;
     private SharedPreferences settings;
     private String loginTemp;
     View focusView = null;
@@ -89,6 +92,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         settings = getSharedPreferences(PREFS_NAME, 1);
         loginTemp = settings.getString("username", "");
+
 
 
 
@@ -133,6 +137,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         focusView.requestFocus();
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        checkIfAlreadySigned();
+
+
+    }
+
+    public void checkIfAlreadySigned(){
+        boolean signed = settings.getBoolean("signed", false);
+        json = new JsonUtil();
+        String urlLogin = "https://boraws.herokuapp.com/login";
+        List param = new ArrayList();
+        param.add(new BasicNameValuePair("username", loginTemp));
+        //param.add(new BasicNameValuePair("password", mPassword));
+        JSONObject retornoPost = json.getJSONFromUrl(urlLogin, param);
+        if(signed){
+            try {
+                user = new UserEntity(retornoPost.getString("_id"), retornoPost.getString("name"), retornoPost.getString("email"), retornoPost.getString("username"), retornoPost.getString("password"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            //Toast.makeText(this, retornoPost.getString("_id")+retornoPost.getString("name")+retornoPost.getString("username")+retornoPost.getString("password"), Toast.LENGTH_LONG).show();
+            Intent nav = new Intent(getApplicationContext(), MainActivity.class);
+            nav.putExtra("extra", user);
+            startActivity(nav);
+        }
 
     }
 
@@ -254,8 +283,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     if (retornoPost.getString("password").equals(mPasswordView.getText().toString())) {
                         //System.out.print("loguei");
                         //return true;
-                        Toast.makeText(this, "loguei", Toast.LENGTH_LONG).show();
+                        SharedPreferences.Editor edit = settings.edit();
+                        //edit.clear();
+                        edit.putBoolean("signed", true);
+                        edit.commit();
+                        user = new UserEntity(retornoPost.getString("_id"), retornoPost.getString("name"), retornoPost.getString("email"), retornoPost.getString("username"), retornoPost.getString("password"));
+                        //Toast.makeText(this, retornoPost.getString("_id")+retornoPost.getString("name")+retornoPost.getString("username")+retornoPost.getString("password"), Toast.LENGTH_LONG).show();
                         Intent nav = new Intent(getApplicationContext(), MainActivity.class);
+                        nav.putExtra("extra", user);
                         startActivity(nav);
                     } else {
                         //return false;

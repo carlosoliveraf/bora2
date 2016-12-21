@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -50,6 +51,7 @@ import youtube.demo.youtubedemo.Fragments.LocaisFragment;
 import youtube.demo.youtubedemo.Fragments.MensagensFragment;
 import youtube.demo.youtubedemo.Fragments.SobreFragment;
 import youtube.demo.youtubedemo.entity.LocalEntity;
+import youtube.demo.youtubedemo.entity.UserEntity;
 import youtube.demo.youtubedemo.util.JsonUtil;
 
 
@@ -72,6 +74,12 @@ public class MainActivity extends AppCompatActivity
     //json util
     private JsonUtil json;
     private boolean pgBar = false;
+    private UserEntity user;
+    private SharedPreferences settings;
+    public static final String PREFS_NAME="LocalePrefs";
+
+
+
 
 
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
@@ -109,11 +117,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Intent i = getIntent();
+        user = (UserEntity) i.getSerializableExtra("extra");
         sMapFragment = SupportMapFragment.newInstance();
         boolean permissionGranted = ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         movedOnce = false;
+        settings = getSharedPreferences(PREFS_NAME, 1);
         markerMap = new HashMap<String, LocalEntity>();
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -123,8 +133,10 @@ public class MainActivity extends AppCompatActivity
         if(bbb == null){
             Toast.makeText(this, R.string.error_permission_map, Toast.LENGTH_LONG).show();}
         // }else {
-        Location myLocation = locationManager.getLastKnownLocation(bbb);
+
+        Location myLocation;
         try {
+            myLocation = locationManager.getLastKnownLocation(bbb);
             currentLat = myLocation.getLatitude();
             currentLong = myLocation.getLongitude();
         }catch (Exception e){
@@ -132,7 +144,7 @@ public class MainActivity extends AppCompatActivity
         }
         if(permissionGranted) {
             // {Some Code}
-            Toast.makeText(this, R.string.ok_permission_map, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, R.string.ok_permission_map, Toast.LENGTH_LONG).show();
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
         } else {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 200);
@@ -273,7 +285,10 @@ public class MainActivity extends AppCompatActivity
                 sFm.beginTransaction().show(sMapFragment).commit();
 
         } else if (id == R.id.nav_msgs) {
-            fm.beginTransaction().replace(R.id.content_frame, new MensagensFragment()).commit();
+            //user = (UserEntity) i.getParcelableExtra("user");
+            Fragment fragment = MensagensFragment.newInstance(user);
+            fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
+            //fm.beginTransaction().replace(R.id.content_frame, new MensagensFragment()).commit();
 
         } else if (id == R.id.nav_busca) {
             fm.beginTransaction().replace(R.id.content_frame, new ImportFragment()).commit();
@@ -286,6 +301,10 @@ public class MainActivity extends AppCompatActivity
             item.setChecked(true);
             fm.beginTransaction().replace(R.id.content_frame, new SobreFragment()).commit();
         } else if (id == R.id.nav_encsessao) {
+            SharedPreferences.Editor edit = settings.edit();
+            //edit.clear();
+            edit.putBoolean("signed", false);
+            edit.commit();
             Intent nav = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(nav);
         }
