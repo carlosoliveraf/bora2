@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class LocalEntity implements Serializable {
 
+    private String _id;
     private String name;
     private String email;
     private String funcionamento;
@@ -16,12 +17,17 @@ public class LocalEntity implements Serializable {
     private String endereco;
     private Double lat;
     private Double longit;
+    private Double produto;
+    private Double lotacao;
+    private Double precos;
+    private Double atendimento;
 
     public LocalEntity(String name) {
         this.name = name;
     }
 
-    public LocalEntity(String name, String email, String funcionamento, String url, String telefone, String endereco, Double lat, Double longit) {
+    public LocalEntity(String _id, String name, String email, String funcionamento, String url, String telefone, String endereco, Double lat, Double longit) {
+        this._id = _id;
         this.name = name;
         this.email = email;
         this.funcionamento = funcionamento;
@@ -30,6 +36,14 @@ public class LocalEntity implements Serializable {
         this.endereco = endereco;
         this.lat = lat;
         this.longit = longit;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getName() {
@@ -95,4 +109,38 @@ public class LocalEntity implements Serializable {
     public void setLongit(Double longit) {
         this.longit = longit;
     }
+
+    public Double getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Double produto) {
+        this.produto = produto;
+    }
+
+    public Double getLotacao() {
+        return lotacao;
+    }
+
+    public void setLotacao(Double lotacao) {
+        this.lotacao = lotacao;
+    }
+
+    public Double getPrecos() {
+        return precos;
+    }
+
+    public void setPrecos(Double precos) {
+        this.precos = precos;
+    }
+
+    public Double getAtendimento() {
+        return atendimento;
+    }
+
+    public void setAtendimento(Double atendimento) {
+        this.atendimento = atendimento;
+    }
 }
+
+

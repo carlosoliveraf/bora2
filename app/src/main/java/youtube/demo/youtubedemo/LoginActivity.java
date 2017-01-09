@@ -154,7 +154,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if(signed){
             try {
                 user = new UserEntity(retornoPost.getString("_id"), retornoPost.getString("name"), retornoPost.getString("email"), retornoPost.getString("username"), retornoPost.getString("password"));
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             //Toast.makeText(this, retornoPost.getString("_id")+retornoPost.getString("name")+retornoPost.getString("username")+retornoPost.getString("password"), Toast.LENGTH_LONG).show();

@@ -49,14 +49,16 @@ import youtube.demo.youtubedemo.Fragments.HomeFragment;
 import youtube.demo.youtubedemo.Fragments.ImportFragment;
 import youtube.demo.youtubedemo.Fragments.LocaisFragment;
 import youtube.demo.youtubedemo.Fragments.MensagensFragment;
+import youtube.demo.youtubedemo.Fragments.NewPlaceFragment;
 import youtube.demo.youtubedemo.Fragments.SobreFragment;
+import youtube.demo.youtubedemo.entity.LatLongEntity;
 import youtube.demo.youtubedemo.entity.LocalEntity;
 import youtube.demo.youtubedemo.entity.UserEntity;
 import youtube.demo.youtubedemo.util.JsonUtil;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, LocationListener, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, LocationListener, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapLongClickListener {
 
     SupportMapFragment sMapFragment;
     protected LocationManager locationManager;
@@ -73,11 +75,10 @@ public class MainActivity extends AppCompatActivity
     protected boolean gps_enabled, network_enabled;
     //json util
     private JsonUtil json;
-    private boolean pgBar = false;
+    boolean pgBar = false;
     private UserEntity user;
     private SharedPreferences settings;
     public static final String PREFS_NAME="LocalePrefs";
-
 
 
 
@@ -151,14 +152,14 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -182,26 +183,37 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            FragmentManager fm = getFragmentManager();
-            android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
-            Fragment fragment = fm.findFragmentByTag("LOCAL_FRAG");
-            if(fragment != null && fragment.isVisible() && pgBar){
-                pgBar = false;
-                //Toast.makeText(this,"entrei no if",Toast.LENGTH_SHORT).show();
-                if (!sMapFragment.isAdded())
-                    sFm.beginTransaction().add(R.id.map, sMapFragment).commit();
-                else
-                    sFm.beginTransaction().show(sMapFragment).commit();
-            }else {
-                //Toast.makeText(this,"entrei no else",Toast.LENGTH_SHORT).show();
-                sFm.beginTransaction().hide(sMapFragment).commit();
-                fm.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+            //if (getFragmentManager().getBackStackEntryCount() > 0) {
+            //    getFragmentManager().popBackStack();
+            //}else{
+                FragmentManager fm = getFragmentManager();
+                android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
+                Fragment fragment = fm.findFragmentByTag("LOCAL_FRAG");
+                if(fragment != null && fragment.isVisible() && pgBar){
+                    pgBar = false;
+                    //Toast.makeText(this,"entrei no if",Toast.LENGTH_SHORT).show();
+                    if (!sMapFragment.isAdded())
+                        sFm.beginTransaction().add(R.id.map, sMapFragment).commit();
+                    else
+                        sFm.beginTransaction().show(sMapFragment).commit();
+                }else {
+                    //Toast.makeText(this,"entrei no else",Toast.LENGTH_SHORT).show();
+                    sFm.beginTransaction().hide(sMapFragment).commit();
+                    fm.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
 
-                //super.onBackPressed();
-            }
+                    //super.onBackPressed();
+                }
+            //}
         }
     }
 
+    public boolean isPgBar() {
+        return pgBar;
+    }
+
+    public void setPgBar(boolean pgBar) {
+        this.pgBar = pgBar;
+    }
 
     public void onLocationChanged(Location location) {
         //txtLat = (TextView) findViewById(R.id.textview1);
@@ -256,9 +268,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        //if (id == R.id.action_settings) {
+         //   return true;
+        //}
 
         return super.onOptionsItemSelected(item);
     }
@@ -279,10 +291,19 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_mapa) {
 
-            if (!sMapFragment.isAdded())
+            if (!sMapFragment.isAdded()) {
                 sFm.beginTransaction().add(R.id.map, sMapFragment).commit();
-            else
+            }else {
                 sFm.beginTransaction().show(sMapFragment).commit();
+            }
+            final Snackbar snackBar = Snackbar.make(findViewById(R.id.content_frame), "Para marcar um estabelecimento, toque na sua localização no mapa por 2 segundos.", Snackbar.LENGTH_INDEFINITE);
+            snackBar.setAction("Ok", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    snackBar.dismiss();
+                }
+            });
+            snackBar.show();
 
         } else if (id == R.id.nav_msgs) {
             //user = (UserEntity) i.getParcelableExtra("user");
@@ -322,6 +343,7 @@ public class MainActivity extends AppCompatActivity
         };
         map.setInfoWindowAdapter(new MyInfoWindowAdapter());
         map.setOnInfoWindowClickListener(this);
+        map.setOnMapLongClickListener(this);
         map.setIndoorEnabled(false);
         map.setBuildingsEnabled(false);
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(
@@ -359,7 +381,7 @@ public class MainActivity extends AppCompatActivity
                                 .snippet(jsonObj.getString("endereco")+"\nFunc: "+jsonObj.getString("funcionamento")+"\nTel: "+jsonObj.getString("telefone"))
                                 .anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
                                 .position(new LatLng(jsonObj.getDouble("lat"), jsonObj.getDouble("long"))));
-                    markerMap.put(jsonObj.getString("name"), new LocalEntity(jsonObj.getString("name"), jsonObj.getString("email"), jsonObj.getString("funcionamento"), jsonObj.getString("url"), jsonObj.getString("telefone"), jsonObj.getString("endereco"), jsonObj.getDouble("lat"), jsonObj.getDouble("long")));
+                    markerMap.put(jsonObj.getString("name"), new LocalEntity(jsonObj.getString("_id"), jsonObj.getString("name"), jsonObj.getString("email"), jsonObj.getString("funcionamento"), jsonObj.getString("url"), jsonObj.getString("telefone"), jsonObj.getString("endereco"), jsonObj.getDouble("lat"), jsonObj.getDouble("long")));
 
                     //marker.showInfoWindow();
                 } catch (JSONException e) {
@@ -371,11 +393,7 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        Marker myMarker = map.addMarker(new MarkerOptions()
-               // .icon(BitmapDescriptorFactory.fromResource(R.drawable.common_google_signin_btn_text_light))
-                .title("teste!")
-                .anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
-                .position(new LatLng(currentLat, currentLong)));
+
         CameraUpdate cameraPosition = CameraUpdateFactory.newLatLngZoom(latlong, 17);
         map.moveCamera(cameraPosition);
         map.animateCamera(cameraPosition);
@@ -434,8 +452,42 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fm = getFragmentManager();
         android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
         sFm.beginTransaction().hide(sMapFragment).commit();
-        Fragment fragment = LocaisFragment.newInstance(local);
+        Fragment fragment = LocaisFragment.newInstance(local, user);
         fm.beginTransaction().replace(R.id.content_frame, fragment, "LOCAL_FRAG").commit();
+    }
+
+
+    @Override
+    public void onMapLongClick (LatLng point){
+    //Snackbar.make(findViewById(R.id.content_frame), "novo estab", Snackbar.LENGTH_SHORT).show();
+        //System.out.println("teste3292942390423");
+        if((currentLat - point.latitude <= 0.00050 && currentLong - point.longitude <= 0.00050) && (point.latitude - currentLat <= 0.00050 && point.longitude - currentLong <= 0.00050)){
+
+            Marker marker = mapa.addMarker(new MarkerOptions()
+                    .title("Novo Local")
+                    .snippet("Sob aprovação! Aguarde!")
+                    .anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
+                    .position(point));
+            LatLongEntity latLong = new LatLongEntity(point.latitude, point.longitude);
+            FragmentManager fm = getFragmentManager();
+            android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
+            sFm.beginTransaction().hide(sMapFragment).commit();
+            Fragment fragment = NewPlaceFragment.newInstance(user, latLong);
+            fm.beginTransaction().replace(R.id.content_frame, fragment, "NEWPLACE_FRAG").commit();
+
+        }else {
+            final Snackbar snackBar = Snackbar.make(findViewById(R.id.content_frame), "Você está muito longe do local, aproxime-se do estabelecimento para poder cadastrá-lo!", Snackbar.LENGTH_INDEFINITE);
+            snackBar.setAction("Ok", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    snackBar.dismiss();
+                }
+            });
+            snackBar.show();
+
+        }
+
+
     }
 
 
