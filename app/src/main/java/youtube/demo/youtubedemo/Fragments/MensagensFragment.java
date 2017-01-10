@@ -1,5 +1,6 @@
 package youtube.demo.youtubedemo.Fragments;
 
+import android.app.FragmentManager;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,15 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import youtube.demo.youtubedemo.LoginActivity;
 import youtube.demo.youtubedemo.R;
 import youtube.demo.youtubedemo.entity.LocalEntity;
@@ -145,6 +143,12 @@ public class MensagensFragment extends ListFragment{
         super.onListItemClick(l, v, position, id);
         // Do whatever you need to do here.
         Toast.makeText(getActivity().getBaseContext(), "Item clicked: "+position, Toast.LENGTH_LONG).show();
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().replace(R.id.content_frame, new ChatFragment()).commit();
         //Log.d("settings", "click worked");
     }
+
+
+
+
 }

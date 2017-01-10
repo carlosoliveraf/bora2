@@ -45,6 +45,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import youtube.demo.youtubedemo.Fragments.ChatFragment;
 import youtube.demo.youtubedemo.Fragments.HomeFragment;
 import youtube.demo.youtubedemo.Fragments.ImportFragment;
 import youtube.demo.youtubedemo.Fragments.LocaisFragment;
@@ -58,7 +59,7 @@ import youtube.demo.youtubedemo.util.JsonUtil;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, LocationListener, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapLongClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, LocationListener, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapLongClickListener{
 
     SupportMapFragment sMapFragment;
     protected LocationManager locationManager;
@@ -79,8 +80,6 @@ public class MainActivity extends AppCompatActivity
     private UserEntity user;
     private SharedPreferences settings;
     public static final String PREFS_NAME="LocalePrefs";
-
-
 
 
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
