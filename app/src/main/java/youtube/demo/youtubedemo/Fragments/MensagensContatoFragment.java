@@ -24,8 +24,12 @@ public class MensagensContatoFragment extends ListFragment implements LoaderMana
 
 
     private Chat chat;
-    private static final String CHAT_KEY = "chat_key";
+    private static final String USER_KEY = "user_key";
+    private static final String USERF_KEY = "userf_key";
+
     private UserEntity user;
+    private UserEntity userf;
+
     String[] nomes;
 
 
@@ -33,10 +37,11 @@ public class MensagensContatoFragment extends ListFragment implements LoaderMana
     String[] ownMsgs;
     String[] theirMsgs;
 
-    public static MensagensContatoFragment newInstance(UserEntity user) {
+    public static MensagensContatoFragment newInstance(UserEntity user, UserEntity userf) {
         MensagensContatoFragment fragment = new MensagensContatoFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(CHAT_KEY, (Serializable) user);
+        bundle.putSerializable(USER_KEY, (Serializable) user);
+        bundle.putSerializable(USERF_KEY, (Serializable) userf);
         fragment.setArguments(bundle);
 
         return fragment;
