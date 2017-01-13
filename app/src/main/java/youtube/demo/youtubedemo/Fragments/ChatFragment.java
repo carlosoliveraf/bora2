@@ -59,9 +59,9 @@ public class ChatFragment extends Fragment implements LoaderManager.LoaderCallba
 
 
         public void fragmentChange(){
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.your_placeholder, new MensagensContatoFragment());
-            ft.commit();
+           // FragmentTransaction ft = getFragmentManager().beginTransaction();
+           // ft.replace(R.id.your_placeholder, new MensagensContatoFragment());
+           // ft.commit();
 
         }
 

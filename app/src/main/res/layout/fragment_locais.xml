@@ -6,7 +6,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
 
         <ImageView
             android:layout_width="150dp"
@@ -156,95 +157,41 @@
                 android:id="@+id/avaliarButton"
                 android:textAlignment="center"
                 android:layout_marginBottom="15dp" />
+
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/imageView3">
+                android:weightSum="1">
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="97dp"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spac1" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spac2" />
-
-                    <TextView
-                        android:text="Fernando Rod:"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:id="@+id/author1"
-                        android:textAlignment="center"
-                        android:textStyle="normal|bold" />
-
-                    <TextView
-                        android:text="Joe Joe:"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:id="@+id/author2"
-                        android:textAlignment="center"
-                        android:textStyle="normal|bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spac3" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
+                <TextView
+                    android:text="Últimas postagens:"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="1">
+                    android:id="@+id/ultPostTitle"
+                    android:textAlignment="textStart"
+                    android:textStyle="normal|bold" />
 
-                    <TextView
-                        android:text="Últimas postagens:"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ultPostTitle"
-                        android:textAlignment="textStart"
-                        android:textStyle="normal|bold" />
+                <TextView
+                    android:text="O bar está meio vazio, mas o atendimento é demorado. (15/12/2016 às 15h)"
+                    android:layout_width="match_parent"
+                    android:id="@+id/post1"
+                    android:layout_height="35dp"
+                    android:paddingStart="5dp"
+                    android:layout_marginTop="5dp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spac4" />
+                <TextView
+                    android:text="Vontade de ir para casa... (12/12/2016 às 22h)"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:id="@+id/post2"
+                    android:layout_weight="0.19"
+                    android:paddingStart="5dp"
+                    android:layout_marginTop="5dp" />
 
-                    <TextView
-                        android:text="O bar está meio vazio, mas o atendimento é demorado. (15/12/2016 às 15h)"
-                        android:layout_width="match_parent"
-                        android:id="@+id/post1"
-                        android:layout_height="35dp"
-                        android:paddingStart="5dp" />
-
-                    <TextView
-                        android:text="Vontade de ir para casa... (12/12/2016 às 22h)"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:id="@+id/post2"
-                        android:layout_weight="0.19"
-                        android:paddingStart="5dp" />
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="15dp">
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
 
             </LinearLayout>
+
         </LinearLayout>
 
 

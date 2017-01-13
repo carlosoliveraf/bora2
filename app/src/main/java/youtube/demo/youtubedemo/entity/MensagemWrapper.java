@@ -9,27 +9,36 @@ import java.util.Date;
 
 public class MensagemWrapper implements Serializable {
 
-    private int _id;
-
+    private String _id;
+    private boolean isMe;
     private String userSend;
     private String userRecei;
     private String msg;
-    private Date created_at;
+    private String created_at;
 
-    public MensagemWrapper(int _id, String userSend, String userRecei, String msg, Date created_at) {
+    public MensagemWrapper(String _id, boolean isMe, String userSend, String userRecei, String msg, String created_at) {
         this._id = _id;
+        this.isMe = isMe;
         this.userSend = userSend;
         this.userRecei = userRecei;
         this.msg = msg;
         this.created_at = created_at;
     }
 
-    public int get_id() {
+    public String get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(String _id) {
         this._id = _id;
+    }
+
+    public boolean isMe() {
+        return isMe;
+    }
+
+    public void setMe(boolean me) {
+        isMe = me;
     }
 
     public String getUserSend() {
@@ -56,11 +65,11 @@ public class MensagemWrapper implements Serializable {
         this.msg = msg;
     }
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 }

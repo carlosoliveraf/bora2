@@ -4,178 +4,106 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingTop="20dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:text="Mr. Beer"
-                android:layout_width="310dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/ultimoslocais1"
-                android:layout_marginTop="225dp"
-                android:layout_marginLeft="50dp" />
-
-            <TextView
-                android:text="Original"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/ultimoslocais2"
-                android:layout_marginLeft="50dp" />
-
-            <TextView
-                android:text="Boteco da Ilha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/ultimoslocais3"
-                android:layout_marginLeft="50dp" />
-
-            <TextView
-                android:text="Últimas postagens:"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/ultimaspostagenslabel"
-                android:layout_below="@+id/linearLayout2"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="14dp"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spacer" />
-
-            <TextView
-                android:text='"o bar está pegando fogo..." - Em Mr. Beer.'
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/ultimaspost1"
-                android:layout_marginLeft="50dp" />
-
-            <TextView
-                android:text='"vazio, não vale a pena..." - Em Sanduicheria da Ilha'
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/ultimaspost2"
-                android:layout_marginLeft="50dp" />
-
-            <TextView
-                android:text='"muito bom! ainda há mesas livres..." - Em Container'
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/ultimaspost3"
-                android:layout_marginLeft="50dp" />
-
-            <Button
-                android:text="Postar informação"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/linearLayout3"
-                android:layout_alignRight="@+id/profilepic"
-                android:layout_alignEnd="@+id/profilepic"
-                android:layout_marginTop="38dp"
-                android:id="@+id/localpostar" />
-
-        </LinearLayout>
-
-        <ImageView
             android:layout_height="wrap_content"
-            android:src="@mipmap/avatar"
-            android:id="@+id/profilepic"
-            android:layout_alignBottom="@+id/cidade"
-            android:layout_width="250px"
-            android:layout_marginLeft="40px" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingEnd="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Carlos Olivera"
-            android:id="@+id/profilename"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/profilepic"
-            android:layout_toEndOf="@+id/profilepic"
-            android:layout_marginLeft="38dp"
-            android:layout_marginStart="38dp"
-            android:textSize="24sp" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <TextView
-            android:text="Florianópolis - SC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cidade"
-            android:layout_below="@+id/profilename"
-            android:layout_alignLeft="@+id/profilename"
-            android:layout_alignStart="@+id/profilename"
-            android:layout_marginTop="13dp" />
+                <ImageView
+                    android:layout_height="109dp"
+                    android:src="@mipmap/avatar"
+                    android:id="@+id/profilepic"
+                    android:layout_alignBottom="@+id/cidade"
+                    android:layout_width="125dp" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Bem vindo (a),"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView7"
+                        android:layout_weight="1"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Carlos Olivera"
+                        android:id="@+id/profilename"
+                        android:textSize="24sp"
+                        android:layout_toRightOf="@+id/profilepic"
+                        android:layout_toEndOf="@+id/profilepic"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textStyle="normal|bold" />
+
+                    <TextView
+                        android:text="28 anos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView17"
+                        android:layout_weight="1"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:text="Florianópolis - SC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cidade"
+                        android:layout_marginTop="12dp"
+                        android:layout_below="@+id/profilename"
+                        android:layout_alignLeft="@+id/profilename"
+                        android:layout_alignStart="@+id/profilename"
+                        android:layout_marginLeft="11dp"
+                        android:layout_marginStart="11dp"
+                        android:layout_weight="1"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
-                android:text="Você possui"
-                android:layout_width="wrap_content"
+                android:text='No "Bora!?" você não fica sem ter o que fazer! '
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="138dp"
-                android:id="@+id/mensagens"
-                android:layout_below="@+id/profilepic"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="14dp"
-                android:layout_marginStart="14dp"
-                android:textSize="18sp" />
-
-            <TextView
-                android:text="37"
-                android:id="@+id/nmsg"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textSize="30sp"
-                android:textColor="@color/Red"
-                android:textStyle="normal|bold"
-                android:layout_alignBaseline="@+id/mensagens"
-                android:layout_alignBottom="@+id/mensagens"
-                android:layout_alignRight="@+id/profilepic"
-                android:layout_alignEnd="@+id/profilepic"
-                android:layout_marginTop="138dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
-
-            <TextView
-                android:text="mensagens não lidas."
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/msgnlidas"
+                android:id="@+id/textView18"
                 android:layout_weight="1"
-                android:layout_marginTop="138dp"
-                android:textSize="18sp" />
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textStyle="normal|bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:text="Encontre os bares mais bem avaliados pelos usuários e interaja com quem estiver próximo de você."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView19"
+                android:textSize="18sp"
+                android:layout_marginTop="15dp"
+                android:textAlignment="center" />
 
         </LinearLayout>
-
-        <TextView
-            android:text="Últimos locais visitados:"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ultlocais"
-            android:textSize="18sp"
-            android:layout_weight="1"
-            android:layout_marginTop="190dp"
-            android:layout_below="@+id/linearLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="14dp" />
 
     </RelativeLayout>
 

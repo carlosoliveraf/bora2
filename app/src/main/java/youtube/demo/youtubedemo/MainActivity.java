@@ -55,6 +55,7 @@ import youtube.demo.youtubedemo.Fragments.SobreFragment;
 import youtube.demo.youtubedemo.entity.LatLongEntity;
 import youtube.demo.youtubedemo.entity.LocalEntity;
 import youtube.demo.youtubedemo.entity.UserEntity;
+import youtube.demo.youtubedemo.util.ChatActivity;
 import youtube.demo.youtubedemo.util.JsonUtil;
 
 
@@ -168,9 +169,20 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+        android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
+        if (!sMapFragment.isAdded()) {
+            sFm.beginTransaction().add(R.id.map, sMapFragment).commit();
+        }else {
+            sFm.beginTransaction().show(sMapFragment).commit();
+        }
+        final Snackbar snackBar = Snackbar.make(findViewById(R.id.content_frame), "Para marcar um estabelecimento, toque na sua localização no mapa por 2 segundos.", Snackbar.LENGTH_INDEFINITE);
+        snackBar.setAction("Ok", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snackBar.dismiss();
+            }
+        });
+        snackBar.show();
 
         sMapFragment.getMapAsync(this);
 
@@ -198,7 +210,8 @@ public class MainActivity extends AppCompatActivity
                 }else {
                     //Toast.makeText(this,"entrei no else",Toast.LENGTH_SHORT).show();
                     sFm.beginTransaction().hide(sMapFragment).commit();
-                    fm.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+                    Fragment frag = HomeFragment.newInstance(user);
+                    fm.beginTransaction().replace(R.id.content_frame, frag).commit();
 
                     //super.onBackPressed();
                 }
@@ -286,7 +299,9 @@ public class MainActivity extends AppCompatActivity
             sFm.beginTransaction().hide(sMapFragment).commit();
 
         if (id == R.id.nav_inicio) {
-            fm.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+            sFm.beginTransaction().hide(sMapFragment).commit();
+            Fragment frag = HomeFragment.newInstance(user);
+            fm.beginTransaction().replace(R.id.content_frame, frag).commit();
 
         } else if (id == R.id.nav_mapa) {
 
@@ -306,15 +321,20 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_msgs) {
             //user = (UserEntity) i.getParcelableExtra("user");
-            Fragment fragment = MensagensFragment.newInstance(user);
-            fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
-            //fm.beginTransaction().replace(R.id.content_frame, new MensagensFragment()).commit();
-
+            if(user != null && user.get_id() != null){
+                Fragment fragment = MensagensFragment.newInstance(user);
+                fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
+                //fm.beginTransaction().replace(R.id.content_frame, new MensagensFragment()).commit();
+            }else{
+                final Snackbar snackBar = Snackbar.make(findViewById(R.id.content_frame), "User nulo...", Snackbar.LENGTH_LONG);
+                snackBar.show();
+            }
         } else if (id == R.id.nav_busca) {
             fm.beginTransaction().replace(R.id.content_frame, new ImportFragment()).commit();
 
         } else if (id == R.id.nav_editperfil) {
-
+            Intent nav = new Intent(getApplicationContext(), ChatActivity.class);
+            startActivity(nav);
         } else if (id == R.id.nav_config) {
 
         }  else if (id == R.id.nav_sobre) {

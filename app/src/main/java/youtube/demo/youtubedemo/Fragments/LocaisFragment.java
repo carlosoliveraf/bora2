@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -139,7 +138,9 @@ public class LocaisFragment extends Fragment {
         ArrayList<String> observacoes = getObs(mLocal);
         TextView post1 = (TextView) view.findViewById(R.id.post1);
         TextView post2 = (TextView) view.findViewById(R.id.post2);
+        TextView ultPostTitle = (TextView) view.findViewById(R.id.ultPostTitle);
         if(observacoes.size() == 0){
+            ultPostTitle.setVisibility(View.INVISIBLE);
             post1.setVisibility(View.INVISIBLE);
             post2.setVisibility(View.INVISIBLE);
         }

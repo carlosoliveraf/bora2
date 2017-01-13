@@ -1,4 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="Voltar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/chatBackButton"
+                android:layout_weight="0.13"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="Bora!?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:textColor="@color/white"
+                android:textAlignment="textEnd"
+                android:textSize="24sp"
+                android:fontFamily="sans-serif-condensed"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingStart="5dp"
+                android:textStyle="normal|bold"
+                android:layout_weight="1"
+                android:paddingEnd="15dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <EditText
+            android:id="@+id/messageEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/chatSendButton"
+            android:autoText="true"
+            android:hint="type message" />
+
+        <Button
+            android:id="@+id/chatSendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/background_floating_material_dark"
+            android:text="Send MSG"
+            android:textColor="@color/background_material_light"/>
+
+        <ListView
+            android:id="@+id/messagesContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_marginBottom="20dp"
+            android:layout_above="@+id/messageEdit"
+            android:layout_below="@+id/meLbl"
+            android:layout_marginTop="10dp"
+            android:listSelector="@android:color/transparent"
+            android:transcriptMode="alwaysScroll"
+            android:divider="@null" />
+
+        <TextView
+            android:id="@+id/meLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:text="MySelf"
+            android:singleLine="false"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/friendLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Friend"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+</LinearLayout>
+<!--
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,12 +114,12 @@
     android:background="@android:color/darker_gray"
     android:weightSum="1">
 
-   <!-- <fragment
+   &lt;!&ndash; <fragment
         android:name="youtube.demo.youtubedemo.Fragments.ChatFragment"
         android:id="@+id/msg_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />-->
+        android:layout_weight="1" />&ndash;&gt;
 
     <TextView
         android:text="Joe"
@@ -57,4 +164,4 @@
 
 
 
-</LinearLayout>
+</LinearLayout>-->

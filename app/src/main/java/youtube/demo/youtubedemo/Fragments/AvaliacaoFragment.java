@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class AvaliacaoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //enviarAvaliacao(view);
-
+            if(mUser != null) {
                 double atend = Double.valueOf(atendNota.getText().toString());
                 double lot = Double.valueOf(lotNota.getText().toString());
                 double prod = Double.valueOf(prodNota.getText().toString());
@@ -89,15 +90,20 @@ public class AvaliacaoFragment extends Fragment {
                 param.add(new BasicNameValuePair("obs", obsField.getText().toString()));
                 param.add(new BasicNameValuePair("user", mUser.get_id()));
                 param.add(new BasicNameValuePair("place", mLocal.get_id()));
-
+                System.out.print(param);
                 JSONObject obj = json.getJSONFromUrl(urlPosts, param);
-                if(obj != null){
+                if (obj != null) {
 
                     Snackbar.make(view, "Avaliação enviada! Obrigado pela contribuição! :)", Snackbar.LENGTH_LONG).show();
                     FragmentManager fm = getFragmentManager();
                     Fragment fragment = LocaisFragment.newInstance(mLocal, mUser);
                     fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
+                }else{
+                    Snackbar.make(view, "Algo deu errado! Favor repetir a operação.", Snackbar.LENGTH_LONG).show();
                 }
+            }else{
+                Snackbar.make(view, "Oops! Perdi a referência do seu usuário, faça o login novamente!", Snackbar.LENGTH_LONG).show();
+            }
 
         }
         });

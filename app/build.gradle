@@ -5,6 +5,7 @@ android {
     buildToolsVersion "23.0.0"
     useLibrary 'org.apache.http.legacy'
 
+
     defaultConfig {
         applicationId "youtube.demo.youtubedemo"
         minSdkVersion 15

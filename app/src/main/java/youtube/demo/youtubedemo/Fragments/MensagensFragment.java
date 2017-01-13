@@ -2,6 +2,7 @@ package youtube.demo.youtubedemo.Fragments;
 
 import android.app.FragmentManager;
 import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import youtube.demo.youtubedemo.LoginActivity;
 import youtube.demo.youtubedemo.R;
 import youtube.demo.youtubedemo.entity.LocalEntity;
 import youtube.demo.youtubedemo.entity.UserEntity;
+import youtube.demo.youtubedemo.util.ChatActivity;
 import youtube.demo.youtubedemo.util.JsonUtil;
 
 import static android.support.design.R.styleable.AlertDialog;
@@ -99,7 +101,7 @@ public class MensagensFragment extends ListFragment{
 
         user = (UserEntity) getArguments().getSerializable(
                 MSG_KEY);
-        System.out.println(user.get_id());
+        //System.out.println(user.get_id());
 
 
         try {
@@ -143,9 +145,13 @@ public class MensagensFragment extends ListFragment{
         super.onListItemClick(l, v, position, id);
         // Do whatever you need to do here.
         Toast.makeText(getActivity().getBaseContext(), "Item clicked: "+position, Toast.LENGTH_LONG).show();
-        FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.content_frame, new ChatFragment()).commit();
+        //FragmentManager fm = getFragmentManager();
+        //fm.beginTransaction().replace(R.id.content_frame, new ChatFragment()).commit();
         //Log.d("settings", "click worked");
+
+        Intent nav = new Intent(getActivity().getApplicationContext(), ChatActivity.class);
+        nav.putExtra("extra", user);
+        startActivity(nav);
     }
 
 
