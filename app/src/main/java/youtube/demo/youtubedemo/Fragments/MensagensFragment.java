@@ -39,7 +39,6 @@ public class MensagensFragment extends ListFragment{
     // Array of integers points to images stored in /res/drawable/
     int[] imagens = new int[]{
             R.mipmap.avatar_sm,
-            R.mipmap.avatar_sm,
             //R.mipmap.avatar_sm,
             //R.mipmap.avatar_sm,
             //R.mipmap.avatar_sm,
@@ -58,31 +57,32 @@ public class MensagensFragment extends ListFragment{
         String urlLastChat = "https://boraws.herokuapp.com/lastchatbysender/"+ user.get_id();
         //String urlLastChat = "https://boraws.herokuapp.com/lastchatbysender/5859b4ab26a5fa382ffb5b67";
         JSONObject retornoGet = json.getJSONFromUrlGet(urlLastChat);
-        mensagens = new String[]{
-                retornoGet.getString("msg"),
-                "Flww",
-                //"Claroo!",
-                //"192234",
-                //"Mensagem teste 123",
-                //"hahahah",
-                //"hello world",
-                //"café",
-                //"kkkkkkkkkkk",
-                //"hola que tal"
-        };
+        if (retornoGet != null) {
+            mensagens = new String[]{
+                    retornoGet.getString("msg"),
+                    //"Claroo!",
+                    //"192234",
+                    //"Mensagem teste 123",
+                    //"hahahah",
+                    //"hello world",
+                    //"café",
+                    //"kkkkkkkkkkk",
+                    //"hola que tal"
+            };
 
-        nomes = new String[] {
-                (retornoGet.getString("userSend").equals(user.get_id())? retornoGet.getString("userReceiName") : user.getName()),
-                "Ivan Amorim",
-                //"Guilherme Nascimento",
-                //"Alisson Vargas",
-                //"Fernando Rodrigues",
-                //"Matheus Caiser",
-                //"João da Silva",
-                //"Chuck Norris",
-                //"Roberto Gabriel"
+            nomes = new String[]{
+                    (retornoGet.getString("userSend").equals(user.get_id()) ? retornoGet.getString("userReceiName") : user.getName()),
+                    //"Guilherme Nascimento",
+                    //"Alisson Vargas",
+                    //"Fernando Rodrigues",
+                    //"Matheus Caiser",
+                    //"João da Silva",
+                    //"Chuck Norris",
+                    //"Roberto Gabriel"
 
-        };
+            };
+
+        }
         return retornoGet;
     }
 
@@ -112,15 +112,28 @@ public class MensagensFragment extends ListFragment{
         // Each row in the list stores country name, currency and flag
         List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
 
-        for(int i=0;i<2;i++){
-            HashMap<String, String> hm = new HashMap<String,String>();
-            //hm.put("txt", "Country : " + countries[i]);
-            //hm.put("cur","Currency : " + currency[i]);
-            //hm.put("flag", Integer.toString(flags[i]) );
-            hm.put("txt", nomes[i]);
-            hm.put("cur",mensagens[i]);
-            hm.put("flag", Integer.toString(imagens[i]) );
-            aList.add(hm);
+        if (nomes != null && nomes.length >0) {
+            for (int i = 0; i < nomes.length; i++) {
+                HashMap<String, String> hm = new HashMap<String, String>();
+                //hm.put("txt", "Country : " + countries[i]);
+                //hm.put("cur","Currency : " + currency[i]);
+                //hm.put("flag", Integer.toString(flags[i]) );
+                hm.put("txt", nomes[i]);
+                hm.put("cur", mensagens[i]);
+                hm.put("flag", Integer.toString(imagens[i]));
+                aList.add(hm);
+            }
+        }else {
+            for (int i = 0; i < 1; i++) {
+                HashMap<String, String> hm = new HashMap<String, String>();
+                //hm.put("txt", "Country : " + countries[i]);
+                //hm.put("cur","Currency : " + currency[i]);
+                //hm.put("flag", Integer.toString(flags[i]) );
+                hm.put("txt", "Não há conversas!");
+                hm.put("cur", "não há conversas!");
+                hm.put("flag", "");
+                aList.add(hm);
+            }
         }
 
 
@@ -148,10 +161,11 @@ public class MensagensFragment extends ListFragment{
         //FragmentManager fm = getFragmentManager();
         //fm.beginTransaction().replace(R.id.content_frame, new ChatFragment()).commit();
         //Log.d("settings", "click worked");
-
-        Intent nav = new Intent(getActivity().getApplicationContext(), ChatActivity.class);
-        nav.putExtra("extra", user);
-        startActivity(nav);
+        if (nomes != null && nomes.length > 0) {
+            Intent nav = new Intent(getActivity().getApplicationContext(), ChatActivity.class);
+            nav.putExtra("extra", user);
+            startActivity(nav);
+        }
     }
 
 

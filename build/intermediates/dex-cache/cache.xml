@@ -3,174 +3,174 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.0.0_532c41bf070d9f98be7773ac7a6daf678ed84d92.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\android-sdk\extras\android\m2repository\com\android\support\support-annotations\24.0.0\support-annotations-24.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\support-annotations-24.0.0_08092e92df2a2ee2660f1695f67043ce40d40c01.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-10.0.1_47abf11598983aa71f4825a6cf1a1f78b845f9b5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\android-sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha4\constraint-layout-solver-1.0.0-alpha4.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="a882fef6a6b9e3efbb0b6b001895a5fc7c35b391">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.0-alpha4_d2bdd5b76f561758029f3cee34266cfca69daa99.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_1e9f750a6dfe456b68b44222fc76a88133dd3f93.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-alpha4\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="affe29a90a2a709bfd2b8d6411aa99c05a2be96f">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.android.support.constraint-constraint-layout-1.0.0-alpha4_2e29afc6bfde7321b533554808dcfc37acd2bde8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-common-10.0.1_0771207c7c4563973b454ee2ec502767558d9527.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-analytics-10.0.1_5a98a0319a899dce8bb501ec86354934e645f671.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.4.0_ceab693049e00b5ca6f71415f83e5f97a5db47ef.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_7d1c81e399c07daac7e2849b2ed6187401df763f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-analytics-impl-10.0.1_1c2bcfa41ea4a3a45ff33a7bbf671f9be10b7655.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/10.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.0"
         sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-10.0.1_f35838efef672f044184396e290e9f21bfb0d51e.jar" />
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-10.0.1_cd3f460ee7dce353ef3c305023288729953c560f.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.0"
         sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_e99f6ae987558f4c2e242d231a713889974c1a8e.jar" />
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.4.0_36847d89f19048ab2b1b56729bbfee99ed67d9b5.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/10.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.0"
-        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.4.0_c221e0c6ae857b9e72e189117764241a919c931f.jar" />
+        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-10.0.1_00758d0b623a42c4116b9dc3aedcf01d5c86be13.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\jars\libs\internal_impl-24.0.0.jar"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.0"
-        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\internal_impl-24.0.0_9e0d6696539c70e3a88c6b27dc45a4925ee27971.jar" />
+        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.0.0_5c411dfdec04c64974ba96cd1c491df2fb7c1ac1.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/10.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-10.0.1_118dcf46c167050964cd99fa764e6d570b16cf44.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/10.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-10.0.1_066b590a63fe241415142d20353c2d908e5c8986.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/10.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-impl-10.0.1_39e71161114d6484b5bac5d35f4b8508255bdfe8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.0"
         sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-10.0.1_cf18b766258b795bbf200dfbdee968450992b5ec.jar" />
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-10.0.1_35959653df71e5043b7a9619bd42357c4661632c.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="4b17463c814bdc562fb0392fa3494063623a0904">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-messaging-10.0.1_7474c1911660e52de96c28abb3aa8b6cb3df4821.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.0"
-        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-10.0.1_17c00c508c2c5fc98df2c109323808d9379db015.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\jars\classes.jar"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/10.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.0"
         sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
-        <dex dex="C:\Users\oliverace\Downloads\YoutubeDemo_GoogleMaps\YoutubeDemo\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-iid-10.0.1_ea3d3fe93d3a3a3f62ca50edccd1d4211bdc127c.jar" />
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-iid-10.0.1_17dd743ba0524f57de84a8fea0fa37f0067f5b9d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.4.0_7ce1cf1e928506b8e796de54635fc6059fc342a3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/10.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="4b17463c814bdc562fb0392fa3494063623a0904">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-messaging-10.0.1_29639677236009ec25c7986da57a87dc60b69bb8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.4.0_f12566050b52b8c6b000fd32176858bd86cd3b82.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.0.0/support-annotations-24.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/support-annotations-24.0.0_7d845fbe484f0e2cee91c9e43e85bb959d50db3d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/10.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-maps-10.0.1_330c3d25851952ea5a6783ac0a92d52b9492aa3a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.4.0_e98dce1ff9c017009f8f3fa64d042ce91d6eebdf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/internal_impl-24.0.0_c781bc7fbb027c5b23ab59aac8f70ae3f371eb59.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="affe29a90a2a709bfd2b8d6411aa99c05a2be96f">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.0.0-alpha4_0ccd98bb7855301de0457b4c946dbf77a2c6767f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.4.0_cbbec538f4b5af9bd23de07bff5b837f051065d8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/carloseduardoolivera/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha4/constraint-layout-solver-1.0.0-alpha4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="a882fef6a6b9e3efbb0b6b001895a5fc7c35b391">
+        <dex dex="/Users/carloseduardoolivera/Desktop/tcc/bora2/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.0-alpha4_9c05cf60352c678e3650f4ac918b6cd464929517.jar" />
     </item>
 
 </items>
